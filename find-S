@@ -1,0 +1,19 @@
+import csv
+a=[]
+with open('es.csv','r') as csvfile:
+    next(csvfile)
+    for row in csv.reader(csvfile):
+        a.append(row)
+print(a)
+n=len(a[0])-1
+hypothesis=['0']*n
+for i in range(0,len(a)):
+    if(a[i][n]=='1'):
+        for j in range(0,n):
+            if(hypothesis[j]=='0' or hypothesis[j]==a[i][j]):
+                hypothesis[j]=a[i][j]
+            else:
+                hypothesis[j]='?'
+    if(a[i][n]=='0'):
+        print("negative")
+print(hypothesis)
