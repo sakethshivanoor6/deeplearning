@@ -1,0 +1,31 @@
+import csv
+a=[]
+s=[]
+gh=[]
+with open('es.csv','r') as csvfile:
+    next(csvfile)
+    for row in csv.reader(csvfile):
+        a.append(row)
+n=len(a[0])-1
+for i in range(0,n):
+    s.append(a[0][i])
+g=[['?' for i in range(len(s))]for j in range(len(s))]
+for i in range(0,len(a)):
+    if(a[i][n]=='1'):
+        for j in range(0,len(s)):
+            if(a[i][j]!=s[j]):
+                s[j]='?'
+
+                g[j][j]='?'
+    if(a[i][n]=='0'):
+        for j in range(0,len(s)):
+            if(a[i][j]!=s[j]):
+                g[j][j]=s[j]
+            else:
+                g[j][j]='?'
+for i in g:
+    for j in i:
+        if(j!='?'):
+            gh.append(i)
+print(s)
+print(gh)
