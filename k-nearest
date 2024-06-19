@@ -1,0 +1,30 @@
+import math
+categories=dict()
+def knn(points,p,k):
+    distance=[]
+    for g in points:
+        for xy in points[g]:
+            x=abs(xy[0]-p[0])
+            y=abs(xy[1]-p[1])
+            ed=math.sqrt((x**2)+(y**2))
+            distance.append((ed,g))
+    distance=sorted(distance)[:k]
+    for d in distance:
+        categories[d[1]]+=1
+    print("it belongs to"+str(max(categories,key=categories.get)))
+points=dict()
+n=int(input("enter no. of groups"))
+for i in range(n):
+    values=[]
+    key=int(input("enter key"))
+    categories[key]=0
+    m=int(input("enter no. of points in each group"))
+    for j in range(m):
+        user_input=input("enter points:")
+        tuples=tuple(int(item) for item in user_input.split())
+        values.append(tuples)
+    points[key]=values
+u=input("enter point to be categorized")
+p=tuple(int(item) for item in u.split())
+k=int(input("enter k"))
+knn(points,p,k)
