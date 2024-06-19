@@ -1,0 +1,15 @@
+import pandas as pd
+from sklearn import tree
+iris=pd.read_csv("dt.csv")
+dic={"old":1,"mid":2,"new":3}
+iris["Age"]=iris["Age"].map(dic)
+dic2={"yes":1,"no":2}
+iris["Competition"]=iris["Competition"].map(dic2)
+dic3={"software":1,"hardware":2}
+iris["Type"]=iris["Type"].map(dic3)
+dic4={"down":0,"up":1}
+iris["Profit"]=iris["Profit"].map(dic4)
+x=iris.iloc[:,:-1]
+y=iris.iloc[:,-1]
+clf=tree.DecisionTreeClassifier().fit(x,y)
+tree.plot_tree(clf)
